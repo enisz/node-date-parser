@@ -1,6 +1,6 @@
 {
   "name": "node-date-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Date parser module for node.js",
   "main": "./src/date-parser.js",
   "directories": {
