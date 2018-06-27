@@ -74,7 +74,7 @@ npm install node-date-parser
 ### Initialise
 ```require``` the module
 ```
-const dateParser = require('date-parser');
+const dateParser = require('node-date-parser');
 ```
 
 ### Parsing
