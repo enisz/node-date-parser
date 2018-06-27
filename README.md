@@ -17,44 +17,62 @@
 <!-- tocstop -->
 
 ## Introduction
-This is a simple date parsing module for node.js. The module returns a string formatted according to the given format string using the given date object.
+This is a simple date parsing module for node.js; similar to the [```date()```](http://php.net/manual/en/function.date.php) function of PHP. The module returns a string according to the given format using the given date.
 
 ## Parameters
-```dateParser(format: string, date? = Date)```
+```dateParser(format: string, date? = Date): string```
 
-### Format
+### ```format: string```
 The format of the outputted date string. See the formatting options below.
- - ``Y`` : A full numeric representation of a year, 4 digits | 1999 or 2003
- - ``n`` : Numeric representation of a month, without leading zeros | 1 through 12
- - ``m`` : Numeric representation of a month, with leading zeros | 01 through 12
- - ``j`` : Day of the month without leading zeros | 1 to 31
- - ``d`` : Day of the month, 2 digits with leading zeros | 01 to 31
- - ``G`` : 24-hour format of an hour without leading zeros | 0 through 23
- - ``H`` : 24-hour format of an hour with leading zeros | 00 through 23
- - ``i`` : Minutes with leading zeros | 00 to 59
- - ``s`` : Seconds, with leading zeros | 00 through 59
- - ``N`` : Numeric representation of the day of the week | 1 (for Monday) through 7 (for Sunday)
- - ``l`` : A full textual representation of the day of the week | Sunday through Saturday
- - ``L`` : A full textual representation of the day of the week (lowercase) | Sunday through Saturday
- - ``f`` : A full textual representation of a month, such as January or March | January through December
- - ``F`` : A full textual representation of a month, such as January or March (lowercase) | January through December
- - ``a`` : Lowercase Ante meridiem and Post meridiem | am or pm
- - ``A`` : Uppercase Ante meridiem and Post meridiem | AM or PM
- - ``g`` : 12-hour format of an hour without leading zeros | 1 through 12
- - ``h`` : 12-hour format of an hour with leading zeros | 01 through 12
+ - ``Y`` : full numeric representation of a year, 4 digits
+ <br/>```1993 or 2003```
+ - ``n`` : numeric representation of a month, without leading zero
+ <br/>```1 through 12```
+ - ``m`` : numeric representation of a month, with leading zero
+ <br/>```01 through 12```
+ - ``j`` : day of the month without leading zero
+ <br/>```1 to 31```
+ - ``d`` : day of the month, 2 digits with leading zero
+ <br/>```01 to 31```
+ - ``G`` : 24-hour format of an hour without leading zero
+ <br/>```0 through 23```
+ - ``H`` : 24-hour format of an hour with leading zero
+ <br/>```00 through 23```
+ - ``i`` : minutes with leading zero
+ <br/>```00 to 59```
+ - ``s`` : seconds, with leading zero
+ <br/>```00 through 59```
+ - ``N`` : numeric representation of the day of the week
+ <br/>```1 (for Monday) through 7 (for Sunday)```
+ - ``l`` : full textual representation of the day of the week
+ <br/>```Sunday through Saturday```
+ - ``L`` : full textual representation of the day of the week (lowercase)
+ <br/>```sunday through saturday```
+ - ``f`` : full textual representation of a month, such as January or March
+ <br/>```January through December```
+ - ``F`` : full textual representation of a month, such as January or March (lowercase)
+ <br/>```january through december```
+ - ``a`` : lowercase Ante meridiem and Post meridiem
+ <br/>```am or pm```
+ - ``A`` : uppercase Ante meridiem and Post meridiem
+ <br/>```AM or PM```
+ - ``g`` : 12-hour format of an hour without leading zero
+ <br/>```1 through 12```
+ - ``h`` : 12-hour format of an hour with leading zero
+ <br/>```01 through 12```
 
-### Date
-Optional second parameter, a [Javascript Date object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). If not provided a new Date object is initialised and used with the current date.
+### ```date: Date [optional]```
+Optional second parameter, a [Javascript Date object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). If not provided the current date will be used.
 
 ## Usage
 ### Install
-Install it with NPM
+Install with NPM
 ```
-npm install date-parser
+npm install node-date-parser
 ```
 
 ### Initialise
-You'll need to require the module
+```require``` the module
 ```
 const dateParser = require('date-parser');
 ```
@@ -83,31 +101,21 @@ console.log(dateParser('Y-m-d H:i:s'));
 ```
 const dateParser = require('date-parser');
 
-const currentYear = dateParser('Y');
-const currentMonth = dateParser('F');
-const currentDay = dateParser('l');
 const currentDate = dateParser('Y-m-d');
 const currentTime = dateParser('H:i:s');
-
-console.log(`The current year is ${currentYear}.`);
-console.log(`The current month is ${currentMonth}.`);
-console.log(`The day today is ${currentDay}.`);
 
 console.log(`The current date is ${currentDate}`);
 console.log(`The current time is ${currentTime}`);
 ```
 The output of the above script is:
 ```
-The current year is 2018.
-The current month is January.
-The day today is Monday.
 The current date is 2018-06-24
 The current time is 16:16:54
 ```
 
 ### Printing a date and time from a custom date object
 ```
-const dateParser = require('date-parser');
+const dateParser = require('node-date-parser');
 
 const customDate = new Date();
 
