@@ -2,7 +2,7 @@
   "name": "node-date-parser",
   "version": "1.0.2",
   "description": "Date parser module for node.js",
-  "main": "./src/date-parser.js",
+  "main": "index.js",
   "directories": {
     "example": "example"
   },
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enisz/date-parser.git"
+    "url": "git+https://github.com/enisz/node-date-parser.git"
   },
   "keywords": [
     "node",
@@ -22,7 +22,7 @@
   "author": "Enisz Abdalla",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/enisz/date-parser/issues"
+    "url": "https://github.com/enisz/node-date-parser/issues"
   },
-  "homepage": "https://github.com/enisz/date-parser#readme"
+  "homepage": "https://github.com/enisz/node-date-parser#readme"
 }

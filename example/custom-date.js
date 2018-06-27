@@ -1,4 +1,4 @@
-const dateParser = require('../src/date-parser');
+const dateParser = require('../src/node-date-parser');
 
 console.log(`Sample script for date-parser with custom date:\n`);
 
