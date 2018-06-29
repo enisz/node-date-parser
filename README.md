@@ -60,6 +60,10 @@ The format of the outputted date string. See the formatting options below.
  <br/>```1 through 12```
  - ``h`` : 12-hour format of an hour with leading zero
  <br/>```01 through 12```
+ - ``v``  : milliseconds
+ <br/>```5 or 74 or 654```
+ - ``V`` : milliseconds with leading zeros
+ <br/>```005 or 074 or 654```
 
 ### ```date: Date [optional]```
 Optional second parameter, a [Javascript Date object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). If not provided the current date will be used.

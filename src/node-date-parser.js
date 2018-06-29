@@ -31,25 +31,25 @@ const dateParser = {
 	n : date => { return (date.getMonth() + 1).toString(); },
 
 	// Numeric representation of a month, with leading zeros | 01 through 12
-	m : date => { return dateParser.n(date).length == 1 ? '0' + dateParser.n(date) : dateParser.n(date); },
+	m : date => { return dateParser.n(date) < 10 ? '0' + dateParser.n(date) : dateParser.n(date); },
 
 	// Day of the month without leading zeros | 1 to 31
 	j : date => { return date.getDate().toString(); },
 
 	// Day of the month, 2 digits with leading zeros | 01 to 31
-	d : date => { return dateParser.j(date).length == 1 ? '0' + dateParser.j(date) : dateParser.j(date); },
+	d : date => { return dateParser.j(date) < 10 ? '0' + dateParser.j(date) : dateParser.j(date); },
 
 	// 24-hour format of an hour without leading zeros | 0 through 23
 	G : date => { return date.getHours().toString(); },
 
 	// 24-hour format of an hour with leading zeros | 00 through 23
-	H : date => { return dateParser.G(date).length == 1 ? '0' + dateParser.G(date) : dateParser.G(date); },
+	H : date => { return dateParser.G(date) < 10 ? '0' + dateParser.G(date) : dateParser.G(date); },
 
 	// Minutes with leading zeros | 00 to 59
-	i : date => { return date.getMinutes().toString().length == 1 ? '0' + date.getMinutes().toString() : date.getMinutes().toString(); },
+	i : date => { return date.getMinutes().toString() < 10 ? '0' + date.getMinutes().toString() : date.getMinutes().toString(); },
 
 	// Seconds, with leading zeros | 00 through 59
-	s : date => { return date.getSeconds().toString().length == 1 ? '0' + date.getSeconds().toString() : date.getSeconds().toString(); },
+	s : date => { return date.getSeconds().toString() < 10 ? '0' + date.getSeconds().toString() : date.getSeconds().toString(); },
 
 	// Numeric representation of the day of the week | 1 (for Monday) through 7 (for Sunday)
 	N : date => { return date.getDay().toString(); },
@@ -76,5 +76,11 @@ const dateParser = {
 	g : date => { return date.getHours() < 12 ? date.getHours().toString() : (date.getHours() - 12).toString(); },
 
 	// 12-hour format of an hour with leading zeros | 01 through 12
-	h : date => { return dateParser.g(date).length == 1 ? '0' + dateParser.g(date) : dateParser.g(date); }
+	h : date => { return dateParser.g(date) < 10 ? '0' + dateParser.g(date) : dateParser.g(date); },
+
+	// 	Milliseconds | 5 or 74 or 654
+	v : date => { return date.getMilliseconds(); },
+
+	// Milliseconds with leading zeros | 005 or 074 or 654
+	V : date => { return dateParser.v(date) < 10 ? '00' + dateParser.v(date) : (dateParser.v(date) < 100 ? '0' + dateParser.v(date) : dateParser.v(date)); }
 }
