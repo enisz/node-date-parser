@@ -16,7 +16,8 @@
     + [Meridiems](#meridiems)
 - [Examples](#examples)
   * [Printing the current date and time](#printing-the-current-date-and-time)
-  * [Printing a date and time from a custom date object](#printing-a-date-and-time-from-a-custom-date-object)
+  * [Using custom date object](#using-custom-date-object)
+  * [Setting custom month, day and meridiem values](#setting-custom-month-day-and-meridiem-values)
 
 <!-- tocstop -->
 
