@@ -122,13 +122,19 @@ This method takes a format string and a date object as a parameter and will retu
 	<br/>```005 or 074 or 654```
 	- ``x`` : whether it's a leap year
 	<br/>```0 or 1```
+	- ``o`` : Lowercase ordinal indicator
+	<br/>```st, nd, th```
+	- ``O`` : Uppercase ordinal indicator
+	<br/>```ST, ND, TH```
+	- ``P`` : Ordinal indicator with first capital letter
+	<br/>```St, Nd, Th```
 
 ### Configuration
 You have the ability to use custom values for date parsing (solution for localisation). The below configuration methods are available in the ``config`` object
 
 #### Months
 ``config.months( customMonths: Array<12> ): void``<br/>
-You can pass an array with custom month names. The array must contain 12 elements in order. 
+You can pass an array with custom month names. The array must contain 12 elements in order.
  - Parameters:
    - ``customMonths: Array<12>``: an array with the 12 months in order.
 
@@ -136,14 +142,14 @@ The method doesn't have a return value.
 
 #### Days
 ``config.days( customDays ): void``<br/>
-You can pass an array with custom day names. The array must contain 7 elements in order. 
+You can pass an array with custom day names. The array must contain 7 elements in order.
  - Parameters:
    - ``customDays: Array<7>``: an array with the 7 days in order starting with monday.
 
 The method doesn't have a return value.
 #### Meridiems
 ``config.meridiems( customMeridiems ): void``<br/>
-You can pass an array with custom month meridiems. The array must contain 2 elements. Ante meridiem first, then Post meridiem  
+You can pass an array with custom month meridiems. The array must contain 2 elements. Ante meridiem first, then Post meridiem
  - Parameters:
    - ``customMeridiems: Array<2>``: an array with the 2 meridiems
 
