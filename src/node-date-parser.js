@@ -87,7 +87,7 @@ const parser = {
 	 * Numeric representation of a month, with leading zero
 	 * Example: 01 through 12
 	 */
-	m : date => { return parser.n(date) < 10 ? '0' + parser.n(date) : parser.n(date); },
+	m : date => { const month = parser.n(date); return month.length == 1 ? '0' + month : month; },
 
 	/**
 	 * Day of the month without leading zero
@@ -99,7 +99,7 @@ const parser = {
 	 * Day of the month, 2 digits with leading zero
 	 * Example: 01 to 31
 	 */
-	d : date => { return parser.j(date) < 10 ? '0' + parser.j(date) : parser.j(date); },
+	d : date => { const day = parser.j(date); return day.length == 1 ? '0' + day : day; },
 
 	/**
 	 * 24-hour format of an hour without leading zero
@@ -111,31 +111,31 @@ const parser = {
 	 * 24-hour format of an hour with leading zero
 	 * Example: 00 through 23
 	 */
-	H : date => { return parser.G(date) < 10 ? '0' + parser.G(date) : parser.G(date); },
+	H : date => { const hour = parser.G(date); return hour.length == 1 ? '0' + hour : hour; },
 
 	/**
 	 * Minutes with leading zero
 	 * Example: 00 to 59
 	 */
-	i : date => { return parser.I(date).toString() < 10 ? '0' + parser.I(date).toString() : parser.I(date).toString(); },
+	i : date => { const minute = parser.I(date); return minute.length == 1 ? '0' + minute : minute; },
 
 	/**
 	 * Minutes without leading zero
 	 * Example: 0 to 59
 	 */
-	I : date => { return date.getMinutes() },
+	I : date => { return date.getMinutes().toString() },
 
 	/**
 	 * Seconds, with leading zero
 	 * Example: 00 through 59
 	 */
-	s : date => { return parser.S(date) < 10 ? '0' + parser.S(date).toString() : parser.S(date).toString(); },
+	s : date => { const second = parser.S(date); return second.length == 1 ? '0' + second : second; },
 
 	/**
 	 * Seconds without leading zero
 	 * Example: 0 through 59
 	 */
-	S : date => { return date.getSeconds(); },
+	S : date => { return date.getSeconds().toString(); },
 
 	/**
 	 * Numeric representation of the day of the week
@@ -159,7 +159,7 @@ const parser = {
 	 * A full textual representation of the day of the week
 	 * Example: Monday through Sunday
 	 */
-	l : date => { return parser.L(date).charAt(0).toUpperCase() + parser.L(date).substr(1); },
+	l : date => { const day = parser.L(date); return day.charAt(0).toUpperCase() + day.substr(1); },
 
 	/**
 	 * A full textual representation of the day of the week (lowercase)
@@ -183,13 +183,13 @@ const parser = {
 	 * A full textual representation of a month, such as January or March
 	 * Example: January through December
 	 */
-	f : date => { return months[date.getDay()]; },
+	f : date => { return months[date.getMonth()]; },
 
 	/**
 	 * A full textual representation of a month, such as January or March (lowercase)
 	 * Example: January through December
 	 */
-	F : date => { return parser.f(date).charAt(0).toUpperCase() + parser.f(date).substr(1); },
+	F : date => { const month = parser.f(date); return month.charAt(0).toUpperCase() + month.substr(1); },
 
 	/**
 	 * Lowercase Ante meridiem and Post meridiem
