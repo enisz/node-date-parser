@@ -244,30 +244,29 @@ const parser = {
 	 * Example: st, nd, th
 	 */
 	o : date => {
-		const day = parser.d(date).toString();
-		const endingNumber = parseInt(day.charAt(day.length-1));
+		const day = parser.d(date);
 
-		if(endingNumber == 1)
-			return 'st';
-		else if(endingNumber == 2)
-			return 'nd';
-		else
-			return 'th';
-	},
+		const ordinary = (number) => {
+			if(number == 1)
+				return 'st';
+			else if(number == 2)
+				return 'nd';
+			else if(number == 3)
+				return 'rd';
+			else
+				return 'th';
+		}
 
-	/**
-	 * Uppercase ordinal indicator
-	 * Example: ST, ND, TH
-	 */
-	O : date => { return parser.o(date).toUpperCase() },
+		if(day < 10)
+			return ordinary(day);
 
-	/**
-	 * Ordinal indicator with uppercase first letter
-	 * Example: St, Nd, Th
-	 */
-	P : date => {
-		const ordinal = parser.o(date);
-		return ordinal.charAt(0).toUpperCase() + ordinal.substr(1);
+		else {
+			const ending = parseInt(day.toString().substr(-2))
+
+			if(ending == 11 || ending == 12 || ending == 13)
+				return 'th';
+			else
+				return ordinary(parseInt(ending.toString().substr(-1)));
+		}
 	}
-
 }

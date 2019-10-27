@@ -33,20 +33,20 @@ npm install node-date-parser
 
 ### Initialise
 ```require``` the module
-```
+```js
 const dateParser = require('node-date-parser');
 ```
 
 ### Parsing
 After requiring the module you can parse the dates with the parse method:
-```
+```js
 // output will be: 2018-06-24 16:25:32
 console.log(dateParser.parse('Y-m-d H:i:s'));
 ```
 ### Configuring
 The configuraiton methods can be used to set custom day, month and meridiem names in order to use localised outputs.
-```
-const customMonths = ['Január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+```js
+const customMonths = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
 const customDays = ['hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat', 'vasárnap'];
 const customMeridiems = ['délelőtt', 'délután'];
 
@@ -61,7 +61,7 @@ This method takes a format string and a date object as a parameter and will retu
 
 - Parameters:
   - ``format: string``: The format of the outputted date string. See the formatting options below.
-  - ``date: Date [optional]``: Optional second parameter, a [Javascript Date object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). If not provided, a default new Date object is constructed and used.
+  - ``date: Date [optional]``: Optional second parameter, a [Javascript Date object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). If not provided, a default new Date object is created and used.
 
  - Return value: the method returns a formatted date string.
 
@@ -124,10 +124,6 @@ This method takes a format string and a date object as a parameter and will retu
 	<br/>```0 or 1```
 	- ``o`` : Lowercase ordinal indicator
 	<br/>```st, nd, th```
-	- ``O`` : Uppercase ordinal indicator
-	<br/>```ST, ND, TH```
-	- ``P`` : Ordinal indicator with first capital letter
-	<br/>```St, Nd, Th```
 
 ### Configuration
 You have the ability to use custom values for date parsing (solution for localisation). The below configuration methods are available in the ``config`` object
@@ -156,23 +152,21 @@ You can pass an array with custom month meridiems. The array must contain 2 elem
 The method doesn't have a return value.
 ## Examples
 ### Printing the current date and time
-```
+```js
 const dateParser = require('date-parser');
 
 const currentDate = dateParser('Y-m-d');
 const currentTime = dateParser('H:i:s');
 
+// Output: The current date is 2018-06-24
 console.log(`The current date is ${currentDate}`);
+
+// Output: The current time is 16:16:54
 console.log(`The current time is ${currentTime}`);
-```
-The output of the above script is:
-```
-The current date is 2018-06-24
-The current time is 16:16:54
 ```
 
 ### Using custom date object
-```
+```js
 const dateParser = require('node-date-parser');
 
 const customDate = new Date();
@@ -183,19 +177,15 @@ customDate.setTime(1426194142000);
 // Parsing the date string from a custom date object, passed as a second argument
 customParsedDate = dateParser('Y-m-d H:i:s', customDate);
 
+// Output: Custom date's datetime is 2015-03-12 22:02:22
 console.log(`Custom date's datetime is ${customParsedDate}.`);
 ```
 
-The output of the above script is:
-```
-Custom date's datetime is 2015-03-12 22:02:22
-```
-
 ### Setting custom month, day and meridiem values
-```
+```js
 const dateParser = require('../src/node-date-parser')
 
-const customMonths = ['Január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+const customMonths = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
 const customDays = ['hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat', 'vasárnap'];
 const customMeridiems = ['délelőtt', 'délután'];
 
@@ -203,6 +193,6 @@ dateParser.config.months(customMonths);
 dateParser.config.days(customDays);
 dateParser.config.meridiems(customMeridiems);
 
-// Output will be: 2018 február 13, délelőtt 02:59 - Kedd
+// Output: 2018 február 13, délelőtt 02:59 - Kedd
 console.log(dateParser.parse('Y f j, a H:i - l'));
 ```
