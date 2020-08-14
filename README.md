@@ -98,9 +98,9 @@ This method takes a format string and a date object as a parameter and will retu
 	<br/>```Sunday through Saturday```
 	- ``L`` : full textual representation of the day of the week (lowercase)
 	<br/>```sunday through saturday```
-	- ``e`` : Three letter representation of a month
+	- ``e`` : Three letter representation of a month (lowercase)
 	<br/>```Jan through Dec```
-	- ``E`` : Three letter representation of a month (lowercase)
+	- ``E`` : Three letter representation of a month
 	<br/>```jan through dec```
 	- ``f`` : full textual representation of a month, such as January or March (lowercase)
 	<br/>```january through december```
