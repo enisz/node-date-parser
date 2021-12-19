@@ -1,4 +1,4 @@
-# Date Parser for node.js
+# DateParser for node.js
 
 <!-- toc -->
 
@@ -6,23 +6,16 @@
 - [Usage](#usage)
   * [Install](#install)
   * [Initialise](#initialise)
-  * [Parsing](#parsing)
-  * [Configuring](#configuring)
+  * [Instantiating the parser](#instantiating-the-parser)
+- [Locales](#locales)
 - [Methods](#methods)
   * [Parse](#parse)
-  * [Configuration](#configuration)
-    + [Months](#months)
-    + [Days](#days)
-    + [Meridiems](#meridiems)
-- [Examples](#examples)
-  * [Printing the current date and time](#printing-the-current-date-and-time)
-  * [Using custom date object](#using-custom-date-object)
-  * [Setting custom month, day and meridiem values](#setting-custom-month-day-and-meridiem-values)
+  * [Load Custom Locale](#load-custom-locale)
 
 <!-- tocstop -->
 
 ## Introduction
-This is a simple date parsing module for node.js; similar to the [```date()```](http://php.net/manual/en/function.date.php) function of PHP. The module returns a string according to the given format using the given date.
+This is a simple date parsing module for node.js; similar to the [```date()```](http://php.net/manual/en/function.date.php) function of PHP. The module returns a string according to the given formatter string using the given date.
 
 ## Usage
 ### Install
@@ -32,167 +25,105 @@ npm install node-date-parser
 ```
 
 ### Initialise
+
+**In a Typescript project**
+```import``` the module then create the parser object.
+
+```ts
+import DateParser from 'node-date-parser';
+parser = new DateParser();
+```
+
+**In a Javascript project**
 ```require``` the module
+
 ```js
-const dateParser = require('node-date-parser');
+const DateParser = require('node-date-parser').default;
+const parser = new DateParser();
+
+// Or do it in one step
+const parser = new (require('node-date-parser').default)();
 ```
 
-### Parsing
-After requiring the module you can parse the dates with the parse method:
-```js
-// output will be: 2018-06-24 16:25:32
-console.log(dateParser.parse('Y-m-d H:i:s'));
+### Instantiating the parser
+```ts
+public constructor(locale: string = "en")
 ```
-### Configuring
-The configuraiton methods can be used to set custom day, month and meridiem names in order to use localised outputs.
-```js
-const customMonths = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
-const customDays = ['hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat', 'vasárnap'];
-const customMeridiems = ['délelőtt', 'délután'];
 
-dateParser.config.months(customMonths);
-dateParser.config.days(customDays);
-dateParser.config.meridiems(customMeridiems);
-```
+The constructor expects 1 conditional argument: the locale. Check the [the locale section](#locales) for the available languages. If this argument is not provided the locale defaults to `"en"`.
+
+If an unknown locale is provided, the constructor will throw an error.
+
+## Locales
+
+The parser is shipped with a few locale files which contains translated data. Currently these locales can be used:
+ - **en**: english
+ - **hu**: hungarian
+
+If you would like to use the parser with a different locale you can pass a json file using the [loadCustomLocale method](#load-custom-locale).
+
+Feel free to share your translated locale file with me so it can be published with the parser.
+
 ## Methods
 ### Parse
-``parse( format: string, date? = new Date() ): string``<br/>
-This method takes a format string and a date object as a parameter and will return a string formatted as the ``format`` string from the provided ``Date`` object. The ``Date`` object is optional. If not provided, a ``new Date`` object is constructed and used.
+```ts
+public parse(format: string, date: Date = new Date()): string
+```
+In most cases the parse method is enough. This method expects 2 parameters:
+ - `format`: a date formatter string. Check the reference table below for more information.
+ - `date`: an optional date object to use for the parsing. Defaults to the current date.
 
-- Parameters:
-  - ``format: string``: The format of the outputted date string. See the formatting options below.
-  - ``date: Date [optional]``: Optional second parameter, a [Javascript Date object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). If not provided, a default new Date object is created and used.
+**Format Reference**
 
- - Return value: the method returns a formatted date string.
+| String formatter | Description                                                                      | Example                                 |
+| ---------------- | -------------------------------------------------------------------------------- | --------------------------------------- |
+| ```d```          | Day of the month, 2 digits with leading zeros                                    | 01 to 31                                |
+| ```D```          | A textual representation of a day, short.                                        | mon through sun                         |
+| ```E```          | A textual representation of a day, short, capitalized.                           | Mon through Sun                         |
+| ```e```          | A textual representation of a day, short, uppercase.                             | MON through SUN                         |
+| ```j```          | Day of the month without leading zeros                                           | 1 to 31                                 |
+| ```l```          | A full textual representation of the day of the week, lowercase.                 | monday through sunday                   |
+| ```K```          | A full textual representation of the day of the week, capitalized.               | Monday through Sunday                   |
+| ```N```          | ISO 8601 numeric representation of the day of the week                           | 1 (for Monday) through 7 (for Sunday)   |
+| ```w```          | Numeric representation of the day of the week                                    | 0 (for Sunday) through 6 (for Saturday) |
+| ```z```          | The day of the year (starting from 0)                                            | 0 through 365                           |
+| ```W```          | ISO 8601 week number of year, weeks starting on Monday                           | 42 (the 42nd week in the year)          |
+| ```F```          | A full textual representation of a month, such as january or march, lowercase.   | january through december                |
+| ```f```          | A full textual representation of a month, such as January or March, capitalized. | january through december                |
+| ```m```          | Numeric representation of a month, with leading zeros                            | 01 through 12                           |
+| ```M```          | A short textual representation of a month, short, lowercase                      | jan through dec                         |
+| ```n```          | Numeric representation of a month, without leading zeros                         | 1 through 12                            |
+| ```t```          | Number of days in the given month                                                | 28 through 31                           |
+| ```L```          | Whether it's a leap year                                                         | 1 if it is a leap year, 0 otherwise.    |
+| ```Y```          | A full numeric representation of a year, 4 digits                                | 1999 or 2003                            |
+| ```y```          | A two digit representation of a year                                             | 99 or 03                                |
+| ```a```          | Ante meridiem and Post meridiem, lowercase                                       | am or pm                                |
+| ```A```          | Ante meridiem and Post meridiem, capitalized                                     | Am or Pm                                |
+| ```B```          | Ante meridiem and Post meridiem, uppercase                                       | AM or PM                                |
+| ```c```          | Ante meridiem and Post meridiem, uppercase                                       | ante meridiem or post meridiem          |
+| ```C```          | Ante meridiem and Post meridiem, capitalized                                     | Ante meridiem or Post meridiem          |
+| ```g```          | 12-hour format of an hour without leading zeros                                  | 1 through 12                            |
+| ```G```          | 24-hour format of an hour without leading zeros                                  | 0 through 23                            |
+| ```h```          | 12-hour format of an hour with leading zeros                                     | 01 through 12                           |
+| ```H```          | 24-hour format of an hour with leading zeros                                     | 00 through 23                           |
+| ```i```          | Minutes with leading zeros                                                       | 00 to 59                                |
+| ```I```          | Minutes without leading zeros                                                    | 0 to 59                                 |
+| ```s```          | Seconds with leading zeros.                                                      | 00 through 59                           |
+| ```S```          | Seconds without leading zeros.                                                   | 0 through 59                            |
+| ```v```          | Milliseconds.                                                                    | 15 or 654                               |
+| ```V```          | Milliseconds, 3 digits.                                                          | 015 or 654                              |
+| ```U```          | Seconds since the Unix Epoch                                                     | 1639714248                              |
 
- - Formatting options:
-	- ``Y`` : full numeric representation of a year, 4 digits
-	<br/>```1993 or 2003```
-	- ``n`` : numeric representation of a month, without leading zero
-	<br/>```1 through 12```
-	- ``m`` : numeric representation of a month, with leading zero
-	<br/>```01 through 12```
-	- ``j`` : day of the month without leading zero
-	<br/>```1 to 31```
-	- ``d`` : day of the month, 2 digits with leading zero
-	<br/>```01 to 31```
-	- ``G`` : 24-hour format of an hour without leading zero
-	<br/>```0 through 23```
-	- ``H`` : 24-hour format of an hour with leading zero
-	<br/>```00 through 23```
-	- ``i`` : minutes with leading zero
-	<br/>```00 to 59```
-	- ``I`` : minutes without leading zero
-	<br/>```0 to 59```
-	- ``s`` : seconds, with leading zero
-	<br/>```00 through 59```
-	- ``S`` : seconds, without leading zero
-	<br/>```00 through 59```
-	- ``N`` : numeric representation of the day of the week
-	<br/>```1 (for Monday) through 7 (for Sunday)```
-	- ``k`` : three letter representation of the day of the week
-	<br/>```Mon through Sun```
-	- ``K`` : three letter representation of the day of the week (lowercase)
-	<br/>```mon through sun```
-	- ``l`` : full textual representation of the day of the week
-	<br/>```Sunday through Saturday```
-	- ``L`` : full textual representation of the day of the week (lowercase)
-	<br/>```sunday through saturday```
-	- ``e`` : Three letter representation of a month (lowercase)
-	<br/>```Jan through Dec```
-	- ``E`` : Three letter representation of a month
-	<br/>```jan through dec```
-	- ``f`` : full textual representation of a month, such as January or March (lowercase)
-	<br/>```january through december```
-	- ``F`` : full textual representation of a month, such as January or March
-	<br/>```January through December```
-	- ``a`` : lowercase meridiem
-	<br/>```am or pm```
-	- ``A`` : uppercase meridiem
-	<br/>```AM or PM```
-	- ``B`` : Meridiem with first capital letter
-	<br/>```Am or Pm```
-	- ``g`` : 12-hour format of an hour without leading zero
-	<br/>```1 through 12```
-	- ``h`` : 12-hour format of an hour with leading zero
-	<br/>```01 through 12```
-	- ``v``  : milliseconds
-	<br/>```5 or 74 or 654```
-	- ``V`` : milliseconds with leading zeros
-	<br/>```005 or 074 or 654```
-	- ``x`` : whether it's a leap year
-	<br/>```0 or 1```
-	- ``o`` : Lowercase ordinal indicator
-	<br/>```st, nd, th```
+**Example**
 
-### Configuration
-You have the ability to use custom values for date parsing (solution for localisation). The below configuration methods are available in the ``config`` object
-
-#### Months
-``config.months( customMonths: Array<12> ): void``<br/>
-You can pass an array with custom month names. The array must contain 12 elements in order.
- - Parameters:
-   - ``customMonths: Array<12>``: an array with the 12 months in order.
-
-The method doesn't have a return value.
-
-#### Days
-``config.days( customDays ): void``<br/>
-You can pass an array with custom day names. The array must contain 7 elements in order.
- - Parameters:
-   - ``customDays: Array<7>``: an array with the 7 days in order starting with monday.
-
-The method doesn't have a return value.
-#### Meridiems
-``config.meridiems( customMeridiems ): void``<br/>
-You can pass an array with custom month meridiems. The array must contain 2 elements. Ante meridiem first, then Post meridiem
- - Parameters:
-   - ``customMeridiems: Array<2>``: an array with the 2 meridiems
-
-The method doesn't have a return value.
-## Examples
-### Printing the current date and time
-```js
-const dateParser = require('date-parser');
-
-const currentDate = dateParser('Y-m-d');
-const currentTime = dateParser('H:i:s');
-
-// Output: The current date is 2018-06-24
-console.log(`The current date is ${currentDate}`);
-
-// Output: The current time is 16:16:54
-console.log(`The current time is ${currentTime}`);
+```ts
+const date = new Date(2021, 11, 1, 14, 42, 39);
+console.log(dateParser.parse("Y-m-d H:i:s")); // 2021-12-01 14:42:39
 ```
 
-### Using custom date object
-```js
-const dateParser = require('node-date-parser');
-
-const customDate = new Date();
-
-// Setting the date to 03/12/2015 @ 9:02pm (UTC)
-customDate.setTime(1426194142000);
-
-// Parsing the date string from a custom date object, passed as a second argument
-customParsedDate = dateParser('Y-m-d H:i:s', customDate);
-
-// Output: Custom date's datetime is 2015-03-12 22:02:22
-console.log(`Custom date's datetime is ${customParsedDate}.`);
+### Load Custom Locale
+```ts
+public loadCustomLocale(customLocaleJson: DateParserLocale): void
 ```
 
-### Setting custom month, day and meridiem values
-```js
-const dateParser = require('../src/node-date-parser')
-
-const customMonths = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
-const customDays = ['hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat', 'vasárnap'];
-const customMeridiems = ['délelőtt', 'délután'];
-
-dateParser.config.months(customMonths);
-dateParser.config.days(customDays);
-dateParser.config.meridiems(customMeridiems);
-
-// Output: 2018 február 13, délelőtt 02:59 - Kedd
-console.log(dateParser.parse('Y f j, a H:i - l'));
-```
+If you want to use different languages with the parser which are not shipped with it, you can pass a JSON file using this method. The json must match the [`DateParserLocale`](https://github.com/enisz/node-date-parser/blob/master/src/interface/DateParserLocale.ts) interface.

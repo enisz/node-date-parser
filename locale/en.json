@@ -1,0 +1,67 @@
+{
+    "month" : {
+        "full": [
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june",
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december"
+        ],
+
+        "short": [
+            "jan",
+            "feb",
+            "mar",
+            "apr",
+            "may",
+            "jun",
+            "jul",
+            "aug",
+            "sep",
+            "oct",
+            "nov",
+            "dec"
+        ]
+    },
+
+    "day": {
+        "full": [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday"
+        ],
+
+        "short": [
+            "sun",
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat"
+        ]
+    },
+
+    "meridiem": {
+        "full": [
+            "ante meridiem",
+            "post meridiem"
+        ],
+
+        "short": [
+            "am",
+            "pm"
+        ]
+    }
+}

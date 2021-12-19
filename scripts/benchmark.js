@@ -1,15 +1,19 @@
 // Date parser module
-const dateParser = require("../src/node-date-parser");
+const dateParser = new (require("../dist/DateParser").default)();
+
 // Random number generator function
 function rand(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }
+
 // An array of generated dates
 let dates = [];
+
 // Number of dates to generate
 let elements = 3000000;
+
 // Helper variable to calculate durations
 let start;
 
-console.log(`Generating random dates between ${new Date(0)} and ${new Date(Date.now())}...`);
+console.log(`Generating random dates between ${dateParser.parse("Y-m-d H:i:s", new Date(0))} and ${dateParser.parse("Y-m-d H:i:s", new Date(Date.now()))}...`);
 
 start = Date.now();
 for(let i=0; i<elements; i++) {
