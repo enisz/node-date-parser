@@ -1,6 +1,6 @@
 {
   "name": "node-date-parser",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Date parser module written in Typescript",
   "main": "./dist/DateParser.js",
   "scripts": {
