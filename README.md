@@ -5,7 +5,7 @@
 - [Introduction](#introduction)
 - [Usage](#usage)
   * [Install](#install)
-  * [Initialise](#initialise)
+  * [Loading the module](#loading-the-module)
   * [Instantiating the parser](#instantiating-the-parser)
 - [Locales](#locales)
 - [Methods](#methods)
@@ -73,7 +73,7 @@ public parse(format: string, date: Date = new Date()): string
 ```
 **Parameters:**
  - `format`: a date formatter string. Check the reference table below for more information.
- - `date`: an optional date object to use for the parsing. Defaults to the current date.
+ - `date`: an optional date object to use for the parsing. Defaults to the current date and time.
 
 **Format Reference**
 
@@ -131,5 +131,3 @@ public loadCustomLocale(customLocaleJson: DateParserLocale): void
 ```
 
 If you want to use different languages with the parser which are not shipped with it, you can pass a JSON file using this method. The json must match the [`DateParserLocale`](./src/interface/DateParserLocale.ts) interface.
-
-@[ts](./src/interface/DateParserLocale.ts)
