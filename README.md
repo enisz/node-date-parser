@@ -130,4 +130,4 @@ public loadCustomLocale(customLocaleJson: DateParserLocale): void
 
 If you want to use different languages with the parser which are not shipped with it, you can pass a JSON file using this method. The json must match the [`DateParserLocale`](./src/interface/DateParserLocale.ts) interface.
 
-> The method itself doesn't validate the json against the interface.
+> The method itself doesn't validate the json against the interface!
