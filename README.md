@@ -119,10 +119,8 @@ public parse(format: string, date: Date = new Date()): string
 **Example**
 
 ```ts
-const date = new Date(2021, 11, 1, 14, 42, 39);
-
 // 2021-12-01 14:42:39
-console.log(dateParser.parse("Y-m-d H:i:s"));
+console.log(dateParser.parse("Y-m-d H:i:s", new Date(2021, 11, 1, 14, 42, 39)));
 ```
 
 ### Load Custom Locale
