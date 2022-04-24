@@ -1,15 +1,12 @@
 {
   "name": "node-date-parser",
   "version": "2.0.0",
-  "description": "Date parser module for node.js",
+  "description": "Date parser module written in Typescript",
   "main": "./dist/DateParser.js",
-  "directories": {
-    "example": "example"
-  },
   "scripts": {
     "benchmark": "node scripts/benchmark.js",
     "build": "rimraf dist && tsc --listEmittedFiles --alwaysStrict",
-    "watch": "nodemon src/DateParser.ts",
+    "watch": "ts-node ./src/DateParser.ts",
     "test": "node scripts/test.js"
   },
   "repository": {
@@ -17,8 +14,6 @@
     "url": "https://github.com/enisz/node-date-parser.git"
   },
   "keywords": [
-    "node",
-    "node.js",
     "date",
     "parser",
     "dateparser"
@@ -30,9 +25,10 @@
   },
   "homepage": "https://github.com/enisz/node-date-parser#readme",
   "devDependencies": {
-    "@types/node": "^16.11.12",
+    "@types/node": "^16.11.27",
     "nodemon": "^2.0.15",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.3"
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
   }
 }
