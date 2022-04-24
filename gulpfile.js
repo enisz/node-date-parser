@@ -31,7 +31,6 @@ exports.default = () => {
 };
 
 exports.build = series(build, locales);
-exports.major = major;
-exports.minor = minor;
-exports.patch = patch;
-exports.publish = publish;
+exports.publishMajor = series(build, locales, major, publish);
+exports.publishMinor = series(build, locales, minor, publish);
+exports.publishPatch = series(build, locales, patch, publish);
