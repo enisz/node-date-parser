@@ -1,0 +1,67 @@
+{
+    "month" : {
+        "full": [
+            "január",
+            "február",
+            "március",
+            "április",
+            "május",
+            "június",
+            "július",
+            "augusztus",
+            "szeptember",
+            "október",
+            "november",
+            "december"
+        ],
+
+        "short": [
+            "jan",
+            "feb",
+            "már",
+            "ápr",
+            "máj",
+            "jún",
+            "júl",
+            "aug",
+            "szept",
+            "okt",
+            "nov",
+            "dec"
+        ]
+    },
+
+    "day": {
+        "full": [
+            "vasárnap",
+            "hétfő",
+            "kedd",
+            "szerda",
+            "csütörtök",
+            "péntek",
+            "szombat"
+        ],
+
+        "short": [
+            "vas",
+            "hét",
+            "ked",
+            "szer",
+            "csüt",
+            "pén",
+            "szom"
+        ]
+    },
+
+    "meridiem": {
+        "full": [
+            "délelőtt",
+            "délután"
+        ],
+
+        "short": [
+            "de",
+            "du"
+        ]
+    }
+}
