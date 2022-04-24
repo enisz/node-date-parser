@@ -26,6 +26,9 @@
   "homepage": "https://github.com/enisz/node-date-parser#readme",
   "devDependencies": {
     "@types/node": "^16.11.27",
+    "cross-spawn": "^7.0.3",
+    "fs-extra": "^10.1.0",
+    "gulp": "^4.0.2",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
     "ts-node": "^10.7.0",
