@@ -1,2 +1,6 @@
 src
 scripts
+./locale
+tsconfig.json
+gulpfile.js
+.gitignore

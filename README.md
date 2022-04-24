@@ -91,7 +91,7 @@ public parse(format: string, date: Date = new Date()): string
 | `z`              | The day of the year (starting from 0)                                            | 0 through 365                           |
 | `W`              | ISO 8601 week number of year, weeks starting on Monday                           | 42 (the 42nd week in the year)          |
 | `F`              | A full textual representation of a month, such as january or march, lowercase.   | january through december                |
-| `f`              | A full textual representation of a month, such as January or March, capitalized. | january through december                |
+| `f`              | A full textual representation of a month, such as January or March, capitalized. | January through December                |
 | `m`              | Numeric representation of a month, with leading zeros                            | 01 through 12                           |
 | `M`              | A short textual representation of a month, short, lowercase                      | jan through dec                         |
 | `n`              | Numeric representation of a month, without leading zeros                         | 1 through 12                            |

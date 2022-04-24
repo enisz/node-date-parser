@@ -1,4 +1,5 @@
 import Fs from 'fs';
+import Path from 'path';
 import { DateParserLocale } from './interface/DateParserLocale';
 
 export default class DateParser {
@@ -25,7 +26,7 @@ export default class DateParser {
      * @returns The locale json as DateParserLocale
      */
     private loadLocale(locale: string): DateParserLocale {
-        return JSON.parse(Fs.readFileSync(`./locale/${locale}.json`, { encoding: "utf-8"})) as DateParserLocale;
+        return JSON.parse(Fs.readFileSync(Path.join(__dirname, "locale", `${locale}.json`), { encoding: "utf-8"})) as DateParserLocale;
     }
 
     /**
@@ -486,3 +487,7 @@ export default class DateParser {
         return Math.floor(+date / 1000).toString();
     }
 }
+
+const x = new DateParser();
+
+console.log(x.parse("Y-m-d H:i:s"));
