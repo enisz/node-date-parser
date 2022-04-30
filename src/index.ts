@@ -1,6 +1,6 @@
+import { DateParserLocale } from './interface/DateParserLocale';
 import Fs from 'fs';
 import Path from 'path';
-import { DateParserLocale } from './interface/DateParserLocale';
 
 export default class DateParser {
     [key: string]: any;
@@ -16,7 +16,7 @@ export default class DateParser {
         try {
             this.locale = this.loadLocale(locale);
         } catch (error) {
-            throw `DateParser Failed to load locale '${locale}'`;
+            throw `DateParser Failed to load locale '${locale}'!`;
         }
     }
 
@@ -26,12 +26,12 @@ export default class DateParser {
      * @returns The locale json as DateParserLocale
      */
     private loadLocale(locale: string): DateParserLocale {
-        return JSON.parse(Fs.readFileSync(Path.join(__dirname, "locale", `${locale}.json`), { encoding: "utf-8"})) as DateParserLocale;
+        return JSON.parse(Fs.readFileSync(Path.join(__dirname, "locale", `${locale}.json`), {encoding: "utf-8"})) as DateParserLocale;
     }
 
     /**
      * Capitalize a string
-     * @param The string to capitalize
+     * @param string The string to capitalize
      * @returns The capitalized string
      */
     private capitalize(string: string): string {
@@ -40,7 +40,7 @@ export default class DateParser {
 
     /**
      * Load a custom locale json to use
-     * @param customLocaleJson
+     * @param customLocaleJson Custom locale json file
      */
     public loadCustomLocale(customLocaleJson: DateParserLocale): void {
         this.locale = customLocaleJson;
@@ -53,19 +53,19 @@ export default class DateParser {
      * @returns a date string formatted according to the input format string.
      */
     public parse(format: string, date: Date = new Date()): string {
-        let formatted: string = "";
+        let formatted: string[] = [];
 
         for(let i=0; i<format.length; i++) {
             const char: string = format.charAt(i);
 
             if(char in this) {
-                formatted += this[char](date);
+                formatted.push(this[char](date));
             } else {
-                formatted += char;
+                formatted.push(char);
             }
         }
 
-        return formatted;
+        return formatted.join("");
     }
 
     /**
@@ -487,7 +487,3 @@ export default class DateParser {
         return Math.floor(+date / 1000).toString();
     }
 }
-
-const x = new DateParser();
-
-console.log(x.parse("Y-m-d H:i:s"));

@@ -7,7 +7,11 @@ function build() {
 }
 
 function locales() {
-    return copy("locale", "dist/locale");
+    return copy("src/locale", "dist/locale");
+}
+
+function types() {
+    return spawn("npm", ["run", "types"]);
 }
 
 function major() {
@@ -30,7 +34,7 @@ exports.default = () => {
     return spawn("gulp", ["--tasks"], { stdio: "inherit" });
 };
 
-exports.build = series(build, locales);
+exports.build = series(build, types, locales);
 exports.publishMajor = series(build, locales, major, publish);
 exports.publishMinor = series(build, locales, minor, publish);
 exports.publishPatch = series(build, locales, patch, publish);
