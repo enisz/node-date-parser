@@ -1,5 +1,5 @@
 // Date parser module
-const dateParser = new (require("../dist/DateParser").default)();
+const dateParser = new (require("../dist/index").default)();
 
 // Random number generator function
 function rand(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }

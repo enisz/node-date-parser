@@ -1,4 +1,4 @@
-const dateParser = new (require("../dist/DateParser").default)();
+const dateParser = new (require("../dist/index").default)();
 
 const date = new Date();
 
