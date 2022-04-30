@@ -487,6 +487,3 @@ export default class DateParser {
         return Math.floor(+date / 1000).toString();
     }
 }
-
-const x = new DateParser();
-console.log(x.parse("Y-m-d H:i:s"));
